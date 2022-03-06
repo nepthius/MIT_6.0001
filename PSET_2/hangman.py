@@ -183,15 +183,13 @@ def hangman(secret_word):
       if is_valid_input(user, letters_guessed):
 
         letters_guessed.append(user)
-        
+
         if user in secret_word:
           print("Good guess: ", get_guessed_word(secret_word, letters_guessed))
         
         else:
           print("Oops! That letter is not in my word: ", get_guessed_word(secret_word, letters_guessed))
           guesses_remaining -= 1
-
-        
         
       
       elif user in letters_guessed:
@@ -201,6 +199,7 @@ def hangman(secret_word):
           guesses_remaining -= 1
         else:
           print(f"Oops! You've already guessed that letter. You have {warnings_remaining} warnings left: ", get_guessed_word(secret_word, letters_guessed))
+
 
       else:
         warnings_remaining -= 1
@@ -212,7 +211,7 @@ def hangman(secret_word):
     
     if is_word_guessed(secret_word, letters_guessed):
       print("Congratulations, you won!")
-      #print("Your total score for this game is: ", )
+      print("Your total score for this game is: ", calc_score(secret_word, guesses_remaining))
     
     else:
       print(f"Sorry, you ran out of guesses. The word was {secret_word}")
@@ -239,6 +238,23 @@ Test case for is_valid_input
 
 letters_guessed = ['e', 'i', 'k', 'p' , 'r', 's']
 print("valid input: ", is_valid_input('e', letters_guessed))
+'''
+
+def calc_score(secret_word, guesses_remaining):
+
+  l = []
+  for a in secret_word:
+    if not a in l:
+      l.append(a)
+  
+  return len(l)*guesses_remaining
+
+'''
+Test case for calc_score
+
+secret_word = 'tataaaaa'
+guesses_remaining = 2
+print("Score is: ", calc_score(secret_word, guesses_remaining))
 '''
 
 # When you've completed your hangman function, scroll down to the bottom
@@ -319,7 +335,7 @@ def hangman_with_hints(secret_word):
 
 
 if __name__ == "__main__":
-    # pass
+    #pass
 
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
@@ -334,4 +350,5 @@ if __name__ == "__main__":
     
     #secret_word = choose_word(wordlist)
     #hangman_with_hints(secret_word)
+
 
